@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Sách Trực Tuyến</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 50%; margin: auto; padding: 20px; border: 1px solid #ccc; }
+        label { display: block; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>ĐẶT SÁCH TRỰC TUYẾN</h2>
+        <h3>THÔNG TIN SÁCH</h3>
+        <p><strong>Mã sách:</strong> IT001</p>
+        <p><strong>Tựa sách:</strong> Lập trình Javascript căn bản</p>
+        <p><strong>Giá bán:</strong> 42,000 VNĐ</p>
+        
+        <h3>ĐẶT SÁCH</h3>
+        <label>Số lượng: <input type="number" id="quantity" min="1" value="1"></label>
+        <label>Ngày nhận: <input type="date" id="date"></label>
+        
+        <h3>THÔNG TIN NGƯỜI NHẬN</h3>
+        <label>Địa chỉ: <input type="text" id="address"></label>
+        <label>Người nhận: <input type="text" id="receiver"></label>
+        <label>Điện thoại: <input type="text" id="phone"></label>
+        
+        <h3>YÊU CẦU ĐẶC BIỆT</h3>
+        <label><input type="checkbox" id="gift"> Gói quà</label>
+        <label>Lời chúc: <input type="text" id="message"></label>
+        
+        <button onclick="placeOrder()">Đặt sách</button>
+    </div>
+
+    <script>
+        function placeOrder() {
+            let quantity = document.getElementById("quantity").value;
+            let date = document.getElementById("date").value;
+            let address = document.getElementById("address").value;
+            let receiver = document.getElementById("receiver").value;
+            let phone = document.getElementById("phone").value;
+            let gift = document.getElementById("gift").checked ? "Có" : "Không";
+            let message = document.getElementById("message").value;
+            
+            let orderInfo = `
+                <h2>THÔNG TIN ĐẶT SÁCH</h2>
+                <p><strong>Mã sách:</strong> IT001</p>
+                <p><strong>Tựa sách:</strong> Lập trình Javascript căn bản</p>
+                <p><strong>Giá bán:</strong> 42,000 VNĐ</p>
+                <p><strong>Số lượng:</strong> ${quantity}</p>
+                <p><strong>Ngày nhận:</strong> ${date}</p>
+                <p><strong>Địa chỉ:</strong> ${address}</p>
+                <p><strong>Người nhận:</strong> ${receiver}</p>
+                <p><strong>Điện thoại:</strong> ${phone}</p>
+                <p><strong>Gói quà:</strong> ${gift}</p>
+                <p><strong>Lời chúc:</strong> ${message}</p>
+                <button onclick="window.print()">In ấn</button>
+            `;
+            
+            let orderWindow = window.open("", "_blank");
+            orderWindow.document.write(`<html><head><title>Thông Tin Đặt Sách</title></head><body>${orderInfo}</body></html>`);
+            orderWindow.document.close();
+        }
+    </script>
+</body>
+</html>
